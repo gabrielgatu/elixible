@@ -1,14 +1,3 @@
-# Elixible
-
-Elixible is a minimal, and still under development, XMPP client written in elixir.
-
-This project is bornt with the intention to understand better how XMPP works, so, this
-has to be considered as a learning project.
-
-More details will be added as soon as I have some free time :)
-
-## License
-
 The MIT License (MIT)
 
 Copyright (c) 2016 Gabriel Gatu
