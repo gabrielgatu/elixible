@@ -7,6 +7,22 @@ has to be considered as a learning project.
 
 More details will be added as soon as I have some free time :)
 
+## Usage
+
+- To login with a user:
+  ```
+   Sample.Client.login(jid, password)
+
+  Example: Sample.Client.login "gabriel@localhost", "pass"
+   ```
+
+- To send a message:
+  ```
+  Sample.Client.send_message(from, to, message)
+
+  Example: Sample.Client.send_message "gabriel@localhost", "foobar@localhost", "hi!"
+  ```
+
 ## License
 
 The MIT License (MIT)
