@@ -1,0 +1,3 @@
+%{"fast_xml": {:hex, :fast_xml, "1.1.11"},
+  "p1_utils": {:hex, :p1_utils, "1.0.3"},
+  "stringprep": {:hex, :stringprep, "1.0.3"}}

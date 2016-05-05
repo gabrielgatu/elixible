@@ -24,15 +24,10 @@ defmodule Elixible.Connection do
   end
 
   def handle_info({:tcp, socket, msg}, state) do
-    handle_xmpp_message(msg)
+    msg
+    |> Elixible.XMPP.parse
+    |> Elixible.Client.Handler.dispatch
+
     {:noreply, state}
-  end
-
-  # TODO: Extract from, to and message (parsing xml)
-  defp handle_xmpp_message("<message" <> _tail = message) do
-    apply(Sample.Client, :handle_message, [nil, nil, message])
-  end
-
-  defp handle_xmpp_message(_msg) do
   end
 end

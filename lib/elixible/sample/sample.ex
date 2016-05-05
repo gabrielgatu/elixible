@@ -2,18 +2,22 @@ defmodule Sample.Client do
   use Elixible.Client
 
   # TODO: config :elixible, Sample.Client
+  # TODO: If the user doesn't implement a handle/1 func, then don't throw an excep. Just handle it.
 
-  def handle_login(jid) do
-    IO.puts "#{jid} logged in."
+  def handle_iq(iq) do
+    IO.inspect iq
   end
 
-  def handle_message(from, to, message) do
-    IO.puts "Received message!"
+  def handle_chatstate(chatstate) do
+    IO.inspect chatstate
+  end
+
+  def handle_message(message) do
     IO.inspect message
 
-    # TODO: Not working because the first 2 fields are nil,
-    # needs parsing in connection.ex
-    # send_message(to, from, "Received message!")
+    # from = Elixible.XMPP.Stanza.JID.jid(message.from)
+    # to = Elixible.XMPP.Stanza.JID.jid(message.to)
+    # Elixible.Client.send_message(to, from, "Received message!")
   end
 
   # handle_presence

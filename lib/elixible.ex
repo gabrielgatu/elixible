@@ -4,6 +4,9 @@ defmodule Elixible do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    # Start jid.erl
+    :jid.start
+
     children = [
       worker(Elixible.Client.Storage, [])
     ]

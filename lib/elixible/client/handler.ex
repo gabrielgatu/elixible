@@ -1,7 +1,7 @@
 defmodule Elixible.Client.Handler do
   use GenServer
 
-  alias Elixible.{Client.Storage, Builder, Connection, Auth}
+  alias Elixible.{XMPP.Stanza, Client.Storage, Builder, Connection, Auth}
 
   # TODO: Check for errors on start_link and return correct value
   def start_link(jid, password) do
@@ -12,6 +12,22 @@ defmodule Elixible.Client.Handler do
   def send_message(from, to, message) do
     Storage.get(from)
     |> GenServer.cast({:send_message, from, to, message})
+  end
+
+  def dispatch(%Stanza.IQ{} = iq) do
+    Sample.Client.handle_iq(iq)
+  end
+
+  def dispatch(%Stanza.Message{} = message) do
+    Sample.Client.handle_message(message) 
+  end
+
+  def dispatch(%Stanza.Chatstate{} = chatstate) do
+    Sample.Client.handle_chatstate(chatstate)
+  end
+
+  # TODO: Still to implement
+  def dispatch(something) do
   end
 
   # Server API
