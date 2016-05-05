@@ -6,6 +6,16 @@ This project is born with the intention just to understand better how XMPP works
 
 More details will be added as soon as I have some free time :)
 
+## Project Structure
+
+- Auth: Authentication system. Currently very minimal (and bad). Only plain supported.
+
+- Client: Modules for connection, handlers, user API.
+
+- XMPP: Parsing and mapping modules.
+
+- Sample: The sample module (Note: the handlers are called from client mods, so its name does not have to change)
+
 ## Usage
 
 - To login with a user:
