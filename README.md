@@ -2,8 +2,7 @@
 
 Elixible is a minimal, and still under development, XMPP client written in elixir.
 
-This project is bornt with the intention to understand better how XMPP works, so, this
-has to be considered as a learning project.
+This project is born with the intention just to understand better how XMPP works, so, this has to be considered as a learning project and, definitively, not production ready.
 
 More details will be added as soon as I have some free time :)
 
@@ -22,6 +21,20 @@ More details will be added as soon as I have some free time :)
 
   Example: Sample.Client.send_message "gabriel@localhost", "foobar@localhost", "hi!"
   ```
+
+## Supported actions
+
+Currently, only authentication and message exchange is supported.
+
+## Handlers available
+
+A handler is just a callback, when the user receives a stanza, it is mapped into a struct and passed into its handler.
+
+**Currently available:**
+
+- handle_iq
+- handle_chatstate
+- handle_message
 
 ## License
 
