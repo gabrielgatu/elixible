@@ -32,9 +32,20 @@ More details will be added as soon as I have some free time :)
   Example: Sample.Client.send_message "gabriel@localhost", "foobar@localhost", "hi!"
   ```
 
+- To send a presence:
+  ```
+  Sample.Client.send_presence(from, status)
+
+  Example: Sample.Client.send_presence "gabriel@localhost", "Available right now!"
+  ```
+
 ## Supported actions
 
-Currently, only authentication and message exchange is supported.
+Supported features:
+
+- Login
+- Send presence
+- Send/Receive messages
 
 ## Handlers available
 
@@ -44,6 +55,7 @@ A handler is just a callback, when the user receives a stanza, it is mapped into
 
 - handle_iq
 - handle_chatstate
+- handle_presence
 - handle_message
 
 ## License
