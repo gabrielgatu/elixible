@@ -21,8 +21,15 @@ defmodule Elixible.Client do
   end
 
   @spec send_presence(String.t, String.t)
-  def send_message(from, to, message) do
+  def send_message(from, to, message) when is_binary(from) and is_binary(to) do
     Handler.send_message(from, to, message)
+  end
+
+  # TODO: Add Elixible.XMPP.Stanza.JID.t and write spec
+  def send_message(from, to, message) do
+    from = Elixible.XMPP.Stanza.JID.jid(from)
+    to = Elixible.XMPP.Stanza.JID.jid(to)
+    send_message(from, to, message)
   end
 
   @spec send_presence(String.t, String.t)
