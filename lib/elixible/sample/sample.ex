@@ -11,6 +11,10 @@ defmodule Sample.Client do
   def handle_chatstate(chatstate) do
     IO.inspect chatstate
   end
+  
+  def handle_presence(presence) do
+    IO.inspect presence
+  end
 
   def handle_message(message) do
     IO.inspect message

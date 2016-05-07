@@ -27,4 +27,13 @@ defmodule Elixible.XMPP.Stanza do
     defstruct id: nil, type: nil, lang: nil, from: nil, to: nil, subject: nil,
       body: nil, thread: nil, error: nil, sub_els: nil
   end
+
+  defmodule Presence do
+    defstruct id: nil, type: nil, lang: nil, from: nil, to: nil, show: nil, status: nil, priority: nil,
+      error: nil, sub_els: nil
+  end
+
+  defmodule Text do
+    defstruct lang: nil, data: nil
+  end
 end

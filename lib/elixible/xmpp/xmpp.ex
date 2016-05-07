@@ -16,17 +16,26 @@ defmodule Elixible.XMPP do
 
   defp handle_parse_result(msg) do
     msg
-    |> add_xmlns_if_not_present
+    |> complete_missing_namespaces
     |> :xmpp_codec.decode
     |> Elixible.XMPP.Mapper.to_struct
   end
 
-  defp add_xmlns_if_not_present({:xmlel, _name, [{"xmlns", "jabber:client"} | _], _opts} = xml) do
+  defp complete_missing_namespaces({:xmlel, name, attrs, children}) do
+    {:xmlel, name, attrs, Enum.map(children, &add_missing_namespaces/1)}
+    |> add_missing_namespaces
+  end
+
+  def add_missing_namespaces({:xmlel, _name, [{"xmlns", "jabber:client"} | _attrs], _children} = xml) do
     xml
   end
 
-  defp add_xmlns_if_not_present({:xmlel, name, attrs, opts}) do
+  def add_missing_namespaces({:xmlel, name, [{"xmlns", _} | attrs], children} = xml) do
+    add_missing_namespaces({:xmlel, name, attrs, children})
+  end
+
+  def add_missing_namespaces({:xmlel, name, attrs, children}) do
     attrs = [{"xmlns", "jabber:client"} | attrs]
-    {:xmlel, name, attrs, opts}
+    {:xmlel, name, attrs, children}
   end
 end

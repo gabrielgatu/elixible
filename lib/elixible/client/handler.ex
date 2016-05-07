@@ -14,6 +14,11 @@ defmodule Elixible.Client.Handler do
     |> GenServer.cast({:send_message, from, to, message})
   end
 
+  def send_presence(from, status) do
+    Storage.get(from)
+    |> GenServer.cast({:send_presence, status})
+  end
+
   def dispatch(%Stanza.IQ{} = iq) do
     Sample.Client.handle_iq(iq)
   end
@@ -25,9 +30,14 @@ defmodule Elixible.Client.Handler do
   def dispatch(%Stanza.Chatstate{} = chatstate) do
     Sample.Client.handle_chatstate(chatstate)
   end
+  
+  def dispatch(%Stanza.Presence{} = presence) do
+    Sample.Client.handle_presence(presence)
+  end
 
-  # TODO: Still to implement
   def dispatch(something) do
+    IO.puts "DISPATCH NOT FOUND!"
+    IO.inspect something
   end
 
   # Server API
@@ -47,6 +57,12 @@ defmodule Elixible.Client.Handler do
     IO.puts "Sending message from #{from} to #{to}: #{message}"
 
     command = Builder.build_message(recipient_host, recipient_name, message)
+    Connection.command(conn, command)
+    {:noreply, state}
+  end
+
+  def handle_cast({:send_presence, status}, %{connection: conn} = state) do
+    command = Builder.build_presence(status)
     Connection.command(conn, command)
     {:noreply, state}
   end
