@@ -22,7 +22,7 @@ More details will be added as soon as I have some free time :)
   ```
    Sample.Client.login(jid, password)
 
-  Example: Sample.Client.login "gabriel@localhost", "pass"
+   Example: Sample.Client.login "gabriel@localhost", "pass"
    ```
 
 - To send a message:
@@ -39,13 +39,21 @@ More details will be added as soon as I have some free time :)
   Example: Sample.Client.send_presence "gabriel@localhost", "Available right now!"
   ```
 
+- To show online users:
+  ```
+  Sample.Client.online_users(from)
+
+  Example: Sample.Client.online_users "gabriel@localhost"
+  ```
+
 ## Supported actions
 
 Supported features:
 
 - Login
-- Send presence
+- Send/Receive presence
 - Send/Receive messages
+- Show online users
 
 ## Handlers available
 
