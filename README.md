@@ -66,6 +66,10 @@ A handler is just a callback, when the user receives a stanza, it is mapped into
 - handle_presence
 - handle_message
 
+## Libraries used
+
+[XmppMapper]("https://github.com/gabrielgatu/xmpp_mapper") is used to parse all the xml stanzas received from the socket.
+
 ## License
 
 The MIT License (MIT)
