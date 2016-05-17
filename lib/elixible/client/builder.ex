@@ -1,5 +1,9 @@
 defmodule Elixible.Builder do
 
+  def online_users(server) do
+    "<iq to='#{server}' type='get' id='234'><query xmlns='http://jabber.org/protocol/disco#items' node='online users'/></iq>"
+  end
+
   def build_message(host, user, message) do
     "<message id='fbfb9ce5-7f3b-489a-9aef-f25691960233' to='#{user}@#{host}' type='chat'><body>#{message}</body></message>"
   end

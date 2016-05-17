@@ -14,15 +14,14 @@ defmodule Elixible.Mixfile do
   def application do
     [
       mod: {Elixible, []},
-      applications: [:logger, :fast_xml, :stringprep]
+      applications: [:logger, :xmpp_mapper]
     ]
   end
 
   # Dependencies can be Hex packages:
   defp deps do
     [
-      {:fast_xml, "~> 1.1"},
-      {:stringprep, "~> 1.0"}
+      {:xmpp_mapper, path: "../xmpp_mapper"}
     ]
   end
 end

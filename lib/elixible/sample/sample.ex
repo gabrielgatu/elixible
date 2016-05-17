@@ -11,7 +11,7 @@ defmodule Sample.Client do
   def handle_chatstate(chatstate) do
     IO.inspect chatstate
   end
-  
+
   def handle_presence(presence) do
     IO.inspect presence
   end
@@ -19,8 +19,8 @@ defmodule Sample.Client do
   def handle_message(message) do
     IO.inspect message
 
-    # from = Elixible.XMPP.Stanza.JID.jid(message.from)
-    # to = Elixible.XMPP.Stanza.JID.jid(message.to)
+    # from = Elixible.XMPP.Stanza.JID.to_string(message.from)
+    # to = Elixible.XMPP.Stanza.JID.to_string(message.to)
     # Elixible.Client.send_message(to, from, "Received message!")
   end
 

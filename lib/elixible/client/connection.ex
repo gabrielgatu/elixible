@@ -1,9 +1,8 @@
 defmodule Elixible.Connection do
   use GenServer
 
-  # TODO: Implement Connection lib
-
-  def start_link(host, port \\ 5222) when is_list(host) and is_integer(port) do
+  def start_link(host, port \\ 5222) when is_bitstring(host) and is_integer(port) do
+    host = String.to_char_list(host)
     GenServer.start_link __MODULE__, {host, port}
   end
 
@@ -23,11 +22,8 @@ defmodule Elixible.Connection do
     {:noreply, state}
   end
 
-  def handle_info({:tcp, socket, msg}, state) do
-    msg
-    |> Elixible.XMPP.parse
-    |> Elixible.Client.Handler.dispatch
-
+  def handle_info({:tcp, _socket, xml}, state) do
+    Elixible.Client.Handler.handle_response(xml)
     {:noreply, state}
   end
 end
