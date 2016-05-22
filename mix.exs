@@ -21,7 +21,7 @@ defmodule Elixible.Mixfile do
   # Dependencies can be Hex packages:
   defp deps do
     [
-      {:xmpp_mapper, path: "../xmpp_mapper"}
+      {:xmpp_mapper, git: "https://github.com/gabrielgatu/xmpp_mapper"}
     ]
   end
 end
