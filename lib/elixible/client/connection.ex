@@ -22,6 +22,15 @@ defmodule Elixible.Connection do
     {:noreply, state}
   end
 
+  def handle_info({:tcp, _socket, "<message" <> _ = xml}, state) do
+    xml
+    |> String.split("</message>")
+    |> Enum.map(fn message_xml -> message_xml <> "</message>" end)
+    |> Enum.each(&Elixible.Client.Handler.handle_response/1)
+
+    {:noreply, state}
+  end
+
   def handle_info({:tcp, _socket, xml}, state) do
     Elixible.Client.Handler.handle_response(xml)
     {:noreply, state}
