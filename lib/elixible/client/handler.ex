@@ -50,24 +50,29 @@ defmodule Elixible.Client.Handler do
   end
 
   defp dispatch(%Stanza.IQ{} = iq) do
-    Sample.Client.handle_iq(iq)
+    dispatch_on_client(:handle_iq, [iq])
   end
 
   defp dispatch(%Stanza.Message{} = message) do
-    Sample.Client.handle_message(message)
+    dispatch_on_client(:handle_message, [message])
   end
 
   defp dispatch(%Stanza.Chatstate{} = chatstate) do
-    Sample.Client.handle_chatstate(chatstate)
+    dispatch_on_client(:handle_chatstate, [chatstate])
   end
 
   defp dispatch(%Stanza.Presence{} = presence) do
-    Sample.Client.handle_presence(presence)
+    dispatch_on_client(:handle_presence, [presence])
   end
 
   defp dispatch(something) do
     IO.puts "DISPATCH NOT FOUND!"
     IO.inspect something
+  end
+
+  defp dispatch_on_client(func_name, opts) do
+    mod = Application.get_env(:elixible, :client)
+    apply(mod, func_name, opts)
   end
 
   # Server API

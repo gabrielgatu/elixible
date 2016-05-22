@@ -14,36 +14,44 @@ More details will be added as soon as I have some free time :)
 
 - XMPP: Parsing and mapping modules.
 
-- Sample: The sample module (Note: the handlers are called from client mods, so its name does not have to change)
+## Setup
+
+First of all you have to config a module as a client. It will be responsable for implementing the *handlers*.
+To do so, go to your `/config` folder and add the configuration:
+
+```
+config :elixible,
+  client: ModuleName.Client
+```
 
 ## Usage
 
 - To login with a user:
   ```
-   Sample.Client.login(jid, password)
+   Client.login(jid, password)
 
-   Example: Sample.Client.login "gabriel@localhost", "pass"
+   Example: Client.login "gabriel@localhost", "pass"
    ```
 
 - To send a message:
   ```
-  Sample.Client.send_message(from, to, message)
+  Client.send_message(from, to, message)
 
-  Example: Sample.Client.send_message "gabriel@localhost", "foobar@localhost", "hi!"
+  Example: Client.send_message "gabriel@localhost", "foobar@localhost", "hi!"
   ```
 
 - To send a presence:
   ```
-  Sample.Client.send_presence(from, status)
+  Client.send_presence(from, status)
 
-  Example: Sample.Client.send_presence "gabriel@localhost", "Available right now!"
+  Example: Client.send_presence "gabriel@localhost", "Available right now!"
   ```
 
 - To show online users:
   ```
-  Sample.Client.online_users(from)
+  Client.online_users(from)
 
-  Example: Sample.Client.online_users "gabriel@localhost"
+  Example: Client.online_users "gabriel@localhost"
   ```
 
 ## Supported actions
