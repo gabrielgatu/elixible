@@ -1,6 +1,6 @@
 # Elixible
 
-WARNING: Project not maintained anymore.
+WARNING: Project not maintained anymore. Use it only as a starting point.
 
 Elixible is a minimal, and not yet finished, XMPP client written in elixir.
 
